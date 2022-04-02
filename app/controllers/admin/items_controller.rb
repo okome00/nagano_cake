@@ -7,6 +7,7 @@ class Admin::ItemsController < ApplicationController
   # 商品新規登録画面アクション
   def new
     @item = Item.new
+    @genres = Genre.all
   end
   
   # 商品新規登録アクション
