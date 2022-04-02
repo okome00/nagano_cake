@@ -1,0 +1,9 @@
+<%# 管理者用：ジャンル編集画面 %>
+<h1>ジャンル編集</h1>
+
+<%# ジャンル編集 %>
+<p>ジャンル名</p>
+<%= form_with model: @genre, url: admin_genre_path do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit '変更を保存' %>
+<% end %>
