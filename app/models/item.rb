@@ -2,6 +2,9 @@ class Item < ApplicationRecord
   # genreモデルとのアソシエーション設定(genre_idの紐付け)
   belongs_to :genre
 
+  # order_detailモデルとのアソシエーション設定(item.icの紐付け)
+  has_many :order_details, dependent: :destroy
+
   # ActiveStoreage：画像使用宣言
   has_one_attached :image
 
