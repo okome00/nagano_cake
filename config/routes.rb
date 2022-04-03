@@ -12,9 +12,12 @@ Rails.application.routes.draw do
 
   # 管理者コントローラーのルーディング / アプリケーション詳細設計書参照
   # genres_controllerのルーディング
+  # items_controllerのルーディング
+  # customers_controllerのルーディング
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
 end

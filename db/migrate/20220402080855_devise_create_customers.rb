@@ -34,6 +34,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       # customerモデルのカラム追加 / テーブル定義書参照
+
       t.string :last_name
       t.string :first_name
       t.string :last_name_kana

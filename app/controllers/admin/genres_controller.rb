@@ -8,8 +8,12 @@ class Admin::GenresController < ApplicationController
   # ジャンル新規登録アクション
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    @genres = Genre.all
+    if @genre.save
+      redirect_to admin_genres_path
+    else
+      @genres = Genre.all
+      render :index
+    end
   end
 
   # ジャンル編集画面アクション
