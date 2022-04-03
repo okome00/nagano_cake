@@ -2,45 +2,44 @@
 <h1>商品新規登録</h1>
 
 <%# 新規登録 %>
-<% form_with model: @item, url: admin_items_path do |f| %>
+<%= form_with model: @item, url: admin_items_path do |f| %>
 
-<div class="form-group">
-  <label for="item_list">商品画像</label>
-  <%= f.file_field :image, accept: "image/*" %>
-  <%= f.submit '新規登録' %>
-</div>
+  <div class="form-group">
+    <label for="item_list">商品画像</label>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
 
-<div class="form-group">
-  <label for="item_list">商品名</label>
-  <%= f.text_field :name %>
-</div>
+  <div class="form-group">
+    <label for="item_list">商品名</label>
+    <%= f.text_field :name %>
+  </div>
 
-<div class="form-group">
-  <label for="item_list">商品説明</label>
-  <%= f.text_field :introduction %>
-</div>
+  <div class="form-group">
+    <label for="item_list">商品説明</label>
+    <%= f.text_area :introduction %>
+  </div>
 
-<div class="form-group">
-  <label for="item_list">ジャンル</label>
-  <%= f.collection_select :genre_id, @genres, :id, :name, { prompt: '--選択してください--' } %>
-</div>
+  <div class="form-group">
+    <label for="item_list">ジャンル</label>
+    <%= f.collection_select :genre_id, @genres, :id, :name, { prompt: '--選択してください--' } %>
+  </div>
 
-<div class="form-group">
-  <label for="item_list">税抜価格</label>
-  <%= f.text_field :price %>
-</div>
+  <div class="form-group">
+    <label for="item_list">税抜価格</label>
+    <%= f.text_field :price %> 円
+  </div>
 
-<div class="form-group">
-  <label for="item_list">販売ステータス</label>
-  <%= f.radio_button :is_active, true %>
-  <%= f.label :is_active, '販売中', value: true %>
-  <%= f.radio_button :is_active, false %>
-  <%= f.label :is_active, '販売停止中', value: false %>
-</div>
+  <div class="form-group">
+    <label for="item_list">販売ステータス</label>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active, '販売中', value: true %>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active, '販売停止中', value: false %>
+  </div>
 
-<div class="form-group">
-  <%= f.submit '新規登録' %>
-</div>
+  <div class="form-group">
+    <%= f.submit '新規登録' %>
+  </div>
 
 <% end %>
 
