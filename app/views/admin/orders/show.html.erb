@@ -5,7 +5,8 @@
 <div class="form-group">
   <label for="order_list">購入者</label>
   <% link_to admin_customers_path(@order.id) do %>
-    <%= @order.customer.name %>
+    <%= @order.customer.last_name %><%= @order.customer.first_name %>
+  <% end %>
 </div>
 
 <div class="form-group">
@@ -15,7 +16,8 @@
 
 <div class="form-group">
 <label for="order_list">配送先</label>
-  <%= @order.address %>
+  <%= @order.address %><br />
+  <%= @order.customer.last_name %><%= @order.customer.first_name %>
 </div>
 
 <div class="form-group">

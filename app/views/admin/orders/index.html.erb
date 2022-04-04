@@ -1,2 +1,24 @@
-<%# 1ユーザーの注文履歴 %>
+<%# 1ユーザーの注文履歴 ※できれば※ %>
 <h1>注文履歴</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.each do |order| %>
+    <tr>
+      <td><%= order.item.id %></td>
+      <td><%= order.item.name %></td>
+      <td><%= order.item.price %></td>
+      <td><%= order.genre.name %></td>
+      <td><></td>
+    </tr>
+  </tbody>
+</table>

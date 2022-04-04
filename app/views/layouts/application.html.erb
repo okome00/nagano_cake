@@ -1,3 +1,4 @@
+<%# 全体layout %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,28 +7,39 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# Bootstrap読み込み %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%# ヘッダー表示 %>
-  <header>
-    <%# 管理者Sign_out %>
-    <% if admin_signed_in? %>
-      <li><%= link_to 'About' %></li>
-      <li><%= link_to '商品一覧', admin_items_path %></li>
-      <li><%= link_to '新規登録', new_admin_item_path %></li>
-      <li><%= link_to 'ログイン', new_admin_session_path %></li>
-    <%# 管理者Sign_in %>
-    <% else %>
-      <li><%= link_to '商品一覧', admin_items_path %></li>
-      <li><%= link_to '会員一覧' %></li>
-      <li><%= link_to '注文履歴一覧' %></li>
-      <li><%= link_to 'ジャンル一覧' %></li>
-      <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-    <% end %>
-  </header>
   <body>
-    <%= yield %>
+
+    <%# ヘッダー表示 %>
+    <header>
+      <%# 管理者Sign_out %>
+      <% if admin_signed_in? %>
+        <li><%= link_to '商品一覧', admin_items_path %></li>
+        <li><%= link_to '会員一覧' %></li>
+        <li><%= link_to '注文履歴一覧' %></li>
+        <li><%= link_to 'ジャンル一覧' %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+      <%# 管理者Sign_in %>
+      <% else %>
+        <li><%= link_to 'About' %></li>
+        <li><%= link_to '商品一覧', admin_items_path %></li>
+        <li><%= link_to '新規登録', new_admin_item_path %></li>
+        <li><%= link_to 'ログイン', new_admin_session_path %></li>
+      <% end %>
+
+    </header>
+
+    <%# メイン画面表示 %>
+    <main>
+      <%= yield %>
+    </main>
+
+    <%# フッター表示 %>
+    <footer></footer>
+
   </body>
 </html>

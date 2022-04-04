@@ -12,17 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @customers.each do |customer| %>
+    <% @orders.each do |order| %>
     <tr>
-      <td><%= customer.id %></td>
-      <td><%= customer.last_name + customer.first_name %></td>
-      <td><%= customer.email %></td>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= order.last_name + customer.first_name %></td>
+      <td><%= order.amount %></td>
       <td>
-        <% if customer.is_active == true %>
-          <%= '有効' %>
-        <% else %>
-          <%= '退会' %>
-        <% end %>
       </td>
     </tr>
     <% end %>
