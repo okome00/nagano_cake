@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  # devise機能を実行する前に、configure_permitted_parametersメソッドを実行させる
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  # 顧客Sigb_in議の遷移先設定
+  def after_sign_in_path_for(resource)
+    customers_mypage_path
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
+  end
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

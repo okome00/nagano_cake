@@ -16,19 +16,11 @@
 
     <%# ヘッダー表示 %>
     <header>
-      <%# 管理者Sign_out %>
+      <%# 管理者ヘッダー %>
       <% if admin_signed_in? %>
-        <li><%= link_to '商品一覧', admin_items_path %></li>
-        <li><%= link_to '会員一覧' %></li>
-        <li><%= link_to '注文履歴一覧' %></li>
-        <li><%= link_to 'ジャンル一覧' %></li>
-        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-      <%# 管理者Sign_in %>
+        <%= render 'layouts/adminheader' %>
       <% else %>
-        <li><%= link_to 'About' %></li>
-        <li><%= link_to '商品一覧', admin_items_path %></li>
-        <li><%= link_to '新規登録', new_admin_item_path %></li>
-        <li><%= link_to 'ログイン', new_admin_session_path %></li>
+        <%= render 'layouts/customerheader' %>
       <% end %>
 
     </header>
@@ -39,7 +31,9 @@
     </main>
 
     <%# フッター表示 %>
-    <footer></footer>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
 
   </body>
 </html>

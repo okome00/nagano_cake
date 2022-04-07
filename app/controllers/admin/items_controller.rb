@@ -1,7 +1,8 @@
 class Admin::ItemsController < ApplicationController
   # 商品一覧画面アクション
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
+    @genres= Genre.all
   end
 
   # 商品新規登録画面アクション

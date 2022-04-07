@@ -1,13 +1,25 @@
 <%# 管理者用：ジャンル編集画面 %>
-<h1>ジャンル編集</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto mb-3 bg-light">
+      <h3>ジャンル編集</h3>
+    </div>
+    <div class="col-md-8">
+    </div>
+  </div>
+  <br />
 
 <%# ジャンル編集 %>
 <%= form_with model: @genre, url: admin_genre_path do |f| %>
 
-<div class="form-group">
-  <label for="genre_list">ジャンル名</label>
-  <%= f.text_field :name %>
-  <%= f.submit '変更を保存' %>
+<div class="form-group row">
+  <label for="genre_name", class="col-sm-2 col-form-label font-weight-bold">ジャンル名</label>
+  <div class="col-sm-3 d-flex align-items-center">
+    <%= f.text_field :name %>
+  </div>
+  <div class="col-sm-2 d-flex align-items-center">
+    <%= f.submit '変更を保存', class: 'btn btn-success btn-block' %>
+  </div>
 </div>
 
 <% end %>

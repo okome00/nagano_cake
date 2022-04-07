@@ -16,7 +16,7 @@
 
 <div class="form-group">
 <label for="order_list">配送先</label>
-  <%= @order.address %><br />
+  〒<%= @order.address %><br />
   <%= @order.customer.last_name %><%= @order.customer.first_name %>
 </div>
 
@@ -29,7 +29,7 @@
 
   <div class="form-group">
   <label for="order_list">注文ステータス</label>
-    <%= f.collection_select :order, %>
+    <%= f.collection_select :order_status, Order.order_statuses_i18n.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
     <%= f.submit '更新' %>
   </div>
 <% end %>
@@ -47,31 +47,34 @@
     </tr>
   </thead>
   <tbody>
-    <%= form_with model: @order, url: admin_order_path do |f| %>
+    <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= @order_details.name %></td>
-      <td><%= @order_details.price %></td>
-      <td><%= @order_details.amount %></td>
-      <td><%= %></td>
-      <td><%= f.collection_select :order_details, %></td>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.price.to_s(:delimited) %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= (order_detail.price * order_detail.amount).to_s(:delimited) %></td>
+      <td>
+        <%= form_with model: @order_details, url: admin_order_detail_path do |f| %>
+          <%= f.collection_select :make_status, OrderDetail.make_statuses_i18n.keys.map{|k| [I18n.t("enums.order_detail.make_status.#{k}"), k]} %></td>
       <td><%= f.submit '更新' %></td>
+        <% end %>
     </tr>
   </tbody>
 </table>
 
 <div class="form-group">
   <label for="order_list">商品合計</label>
-  <%= @order.total_price %>
+  <%= (@order.total_price - @order.postage).to_s(:delimited) %>円
 </div>
 
 <div class="form-group">
   <label for="order_list">送料</label>
-  <%= @order.postage %>
+  <%= @order.postage %>円
 </div>
 
 <div class="form-group">
   <label for="order_list">請求金額</label>
-  <%= @order. %>
+  <%= @order.total_price.to_s(:delimited) %>円
 </div>
 
 
