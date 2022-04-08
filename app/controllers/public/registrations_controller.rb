@@ -6,7 +6,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # 顧客Sigb_in議の遷移先設定
   def after_sign_in_path_for(resource)
-    customers_mypage_path
+    customers_my_page_path
   end
 
   def configure_permitted_parameters

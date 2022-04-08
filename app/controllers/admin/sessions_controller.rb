@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-  #Sign_in後の遷移先
+  # 管理者Sign_in後の遷移先
   def after_sign_in_path_for(resource)
     admin_root_path
   end
 
-  # Sign_out後の遷移先
+  # 管理者Sign_out後の遷移先
   def after_sign_out_path_for(resource)
     new_admin_session_path
   end

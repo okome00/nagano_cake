@@ -1,4 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_admin!
+
   # 製作ステータス編集アクション
   def update
     @order_detail = OrderDetail.find(params[:id])

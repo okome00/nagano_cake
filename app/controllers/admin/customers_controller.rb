@@ -1,4 +1,7 @@
 class Admin::CustomersController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_admin!
+
   # 会員一覧画面アクション
   def index
     @customers = Customer.all

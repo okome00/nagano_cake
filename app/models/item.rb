@@ -1,9 +1,13 @@
 class Item < ApplicationRecord
   # genreモデルとのアソシエーション設定(genre_idの紐付け)
-  belongs_to :genre
-
   # order_detailモデルとのアソシエーション設定(item.icの紐付け)
+  belongs_to :genre
   has_many :order_details, dependent: :destroy
+
+  # バリデーション設定
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
 
   # ActiveStoreage：画像使用宣言
   has_one_attached :image

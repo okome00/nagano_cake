@@ -1,4 +1,7 @@
 class Admin::ItemsController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_admin!
+
   # 商品一覧画面アクション
   def index
     @items = Item.page(params[:page])

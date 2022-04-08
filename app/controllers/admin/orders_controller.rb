@@ -1,7 +1,10 @@
 class Admin::OrdersController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_admin!
+
   # 1ユーザーの注文履歴一覧　※できれば※
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
   end
 
   # 注文履歴詳細画面アクション

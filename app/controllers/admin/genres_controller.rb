@@ -1,4 +1,7 @@
 class Admin::GenresController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_admin!
+
   # ジャンル管理画面(一覧・追加)アクション
   def index
     @genre = Genre.new

@@ -26,6 +26,10 @@ class Public::CustomersController < ApplicationController
 
   # 退会アクション
   def withdraw
+    @customer = current_customer
+    @customer.update(is_active: false)
+    reset_session
+    redirect_to root_path
   end
 
   #　顧客データのストロングパラメータ

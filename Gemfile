@@ -64,3 +64,6 @@ gem 'kaminari','~> 1.2.1'
 
 # enum導入
 gem "enum_help"
+
+# 日本語をデフォルト言語に設定
+gem 'rails-i18n'

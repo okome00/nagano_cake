@@ -1,4 +1,7 @@
 class Public::AddressesController < ApplicationController
+  # Sign_out中はアクセスできないように設定
+  before_action :authenticate_customer!
+
   # 配送先一覧画面アクション
   def index
     @address = Address.new
