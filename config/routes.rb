@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :create, :index, :show]
-    resources :cart_items, only: [:index, :update, :destroy]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
   # 顧客用deviseルーディング設定：URL /customers/sign_in,up ...

@@ -67,3 +67,6 @@ gem "enum_help"
 
 # 日本語をデフォルト言語に設定
 gem 'rails-i18n'
+
+# レコード保存確認用
+gem 'pry-rails'
