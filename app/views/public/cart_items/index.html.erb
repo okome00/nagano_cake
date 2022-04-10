@@ -17,7 +17,7 @@
     <% @cart_items.each do |cart_item| %>
       <tr>
         <td>
-          <%= image_tag cart_item.item.get_image(40, 40) %>
+          <%= image_tag cart_item.item.get_image(80, 80) %>
           <%= cart_item.item.name %>
         </td>
         <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
@@ -33,7 +33,7 @@
   </tbody>
 </table>
 
-<%= link_to '買い物を続ける', root_path %>
+<%= link_to '買い物を続ける', items_path %>
 
 <table>
   <tbody>

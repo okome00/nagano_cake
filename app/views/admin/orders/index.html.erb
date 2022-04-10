@@ -1,24 +1,23 @@
 <%# 1ユーザーの注文履歴 ※できれば※ %>
-<h1>注文履歴</h1>
+<h3><%= @customer.last_name + @customer.first_name %>さんの注文履歴</h3>
 
 <table>
   <thead>
     <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
+      <th>購入日時</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
     </tr>
   </thead>
   <tbody>
-    <% @order.each do |order| %>
+    <% @orders.each do |order| %>
     <tr>
-      <td><%= order.item.id %></td>
-      <td><%= order.item.name %></td>
-      <td><%= order.item.price %></td>
-      <td><%= order.genre.name %></td>
+      <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
+      <td><%= order.order_detail.sum(:amount) %></td>
+      <td><%= order.order_status_i18n %></td>
       <td><></td>
     </tr>
   </tbody>
 </table>
+
+<div><%= paginate @orders %><div>

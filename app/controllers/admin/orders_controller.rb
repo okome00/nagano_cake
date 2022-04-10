@@ -4,7 +4,8 @@ class Admin::OrdersController < ApplicationController
 
   # 1ユーザーの注文履歴一覧　※できれば※
   def index
-    @orders = current_customer.orders
+    @customer = current_customer
+    @orders = current_customer.orders.page(params[:page])
   end
 
   # 注文履歴詳細画面アクション
