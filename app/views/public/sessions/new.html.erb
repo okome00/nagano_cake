@@ -1,24 +1,42 @@
 <%# 顧客Sign_in画面 %>
-<h3>ログイン</h3>
-<p>会員の方はこちらからログイン</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <div class="row">
+        <div class="col-md-auto mb-5 bg-light">
+          <h3>ログイン</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-auto mb-2 bg-light">
+          <p>会員の方はこちらからログイン</p>
+        </div>
+      </div>
 
-<%# form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<%= form_with model: @customer, url: customer_session_path do |f|  %>
+      <%= form_with model: @customer, url: customer_session_path do |f|  %>
+        <div class="form-group">
+          <%= f.label :メールアドレス %>
+          <%= f.email_field :email, placeholder: 'sample@example.com', class: 'form-control' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email %>
+        <div class="form-group">
+          <%= f.label :パスワード %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "ログイン", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-auto mb-2 bg-light">
+          <p>会員登録がお済みでない方</p>
+        </div>
+      </div>
+      <div class="row">
+        <%= render "public/shared/links" %>から新規登録を行ってください。
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<p>会員登録がお済みでない方</p>
-<%= render "public/shared/links" %>から新規登録を行ってください。
+</div>

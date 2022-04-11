@@ -15,23 +15,21 @@
   <body>
 
     <%# ヘッダー表示 %>
-    <header>
+    <header class="sticky-top shadow-sm">
       <%# 管理者ヘッダー %>
-      <% if admin_signed_in? %>
-        <%= render 'layouts/adminheader' %>
-      <% else %>
-        <%= render 'layouts/customerheader' %>
-      <% end %>
-
+      <%= render 'layouts/header' %>
     </header>
 
+    <p id="notice">
+      <%= notice %>
+    </p>
     <%# メイン画面表示 %>
-    <main>
+    <main class="mb-5">
       <%= yield %>
     </main>
 
     <%# フッター表示 %>
-    <footer>
+    <footer class="fixed-bottom bg-light text-dark pt-3">
       <%= render 'layouts/footer' %>
     </footer>
 

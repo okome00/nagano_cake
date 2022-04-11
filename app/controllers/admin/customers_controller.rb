@@ -4,7 +4,7 @@ class Admin::CustomersController < ApplicationController
 
   # 会員一覧画面アクション
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page])
   end
 
   # 会員詳細画面アクション
