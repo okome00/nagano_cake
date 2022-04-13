@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+
+#error_explanation {
+  color: red;
+}
+
+#error_explanation ul {
+  padding-left: 40px;
+}
+
+a:hover {
+  color: #0056b3;
+}

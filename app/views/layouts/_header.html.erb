@@ -12,7 +12,7 @@
       <ul class="navbar-nav ml-auto">
         <%# 管理者Sign_in中 %>
         <% if customer_signed_in? %>
-          <li class="nav-item p-2">ようこそ、<%= current_customer.last_name %>さん！</li>
+          <li class="nav-item p-2 mr-5 align-items-center">ようこそ、<%= current_customer.last_name %>さん！</li>
           <li class="nav-item p-2"><%= link_to 'マイページ', customers_my_page_path, class: 'nav-link text-dark border rounded' %></li>
           <li class="nav-item p-2"><%= link_to '商品一覧', items_path, class: 'nav-link text-dark border rounded' %></li>
           <li class="nav-item p-2"><%= link_to 'カート', cart_items_path, class: 'nav-link text-dark border rounded' %></li>
@@ -26,12 +26,21 @@
         <%# 管理者Sign_out中 %>
         <% else %>
           <li class="nav-item p-2"><%= link_to 'About', about_path, class: 'nav-link text-dark border rounded' %></li>
-          <li class="nav-item p-2"><%= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark border rounded' %></li>
+          <li class="nav-item p-2"><%= link_to '商品一覧', items_path, class: 'nav-link text-dark border rounded' %></li>
           <li class="nav-item p-2"><%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-dark border rounded' %></li>
           <li class="nav-item p-2"><%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark border rounded' %></li>
         <%# 検索機能　※できれば %>
         <% end %>
       </ul>
+
+      <div class="search-form text-right">
+        <%= form_with url: search_path do |f| %>
+          <%= f.text_field :keyword, value: @keyword, placeholder: 'search' %>
+          <button type=submit>
+            <i class="fa fa-search"></i>
+          </button>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>

@@ -7,7 +7,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# application_stylesheet読み込み %>
     <%# Bootstrap読み込み %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,7 +17,7 @@
   <body>
 
     <%# ヘッダー表示 %>
-    <header class="sticky-top shadow-sm">
+    <header class="shadow-sm">
       <%# 管理者ヘッダー %>
       <%= render 'layouts/header' %>
     </header>
@@ -29,7 +31,7 @@
     </main>
 
     <%# フッター表示 %>
-    <footer class="fixed-bottom bg-light text-dark pt-3">
+    <footer class="bg-light text-dark pt-5 pb-4">
       <%= render 'layouts/footer' %>
     </footer>
 

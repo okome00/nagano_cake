@@ -1,19 +1,35 @@
 <%# 顧客商品一覧画面 %>
 
 <%# ジャンル検索　※できれば %>
-<%= render 'public/search', genres: @genres %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <%= render 'public/search', genres: @genres %>
+    </div>
 
-<h3>商品一覧</h3>
-<p>(全<%= @all_items.count %>件)</p>
-
-<% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %>
-    <%= image_tag item.get_image(100, 100) %>
-  <% end %>
-  <%= item.name %>
-  ￥<%= item.price.to_s(:delimited) %>
-<% end %>
-
-<div><%= paginate @items %>
+    <div class="col-md-9 offset-md-1">
+      <div class="col-md-auto mb-3 liline-block">
+        <h3>商品一覧</h3>
+        <p>(全<%= @all_items.count %>件)</p>
+      </div>
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.get_image(200, 200) %><br />
+            <% end %>
+            <%= item.name %><br />
+            ￥<%= item.price.to_s(:delimited) %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="mx-auto">
+          <%= paginate @items %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 

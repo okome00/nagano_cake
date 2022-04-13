@@ -1,53 +1,66 @@
 <%# 管理者会員詳細画面 %>
-<h1>会員詳細</h1>
+<div class="container">
+  <div class="row">
+     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <div class="row">
+          <div class="col-md-auto mb-5 bg-light">
+            <h3>会員詳細</h3>
+          </div>
+        </div>
 
-<%# 会員詳細 %>
-<div class="form-group">
-<label for="customer_list">会員ID</label>
-  <%= @customer.id %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">会員ID</label><br />
+          <%= @customer.id %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">氏名</label>
-  <%= @customer.last_name %>　<%= @customer.first_name %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">氏名</label><br />
+          <%= @customer.last_name %>　<%= @customer.first_name %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">フリガナ</label>
-  <%= @customer.last_name_kana %>　<%= @customer.first_name_kana %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">フリガナ</label><br />
+          <%= @customer.last_name_kana %>　<%= @customer.first_name_kana %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">郵便番号</label>
-  <%= @customer.postal_code %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">郵便番号</label><br />
+          <%= @customer.postal_code %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">住所</label>
-  <%= @customer.address %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">住所</label><br />
+          <%= @customer.address %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">電話番号</label>
-  <%= @customer.telephone_number %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">電話番号</label><br />
+          <%= @customer.telephone_number %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">メールアドレス</label>
-  <%= @customer.email %>
-</div>
+        <div class="form-group">
+        <label for="customer_list">メールアドレス</label><br />
+          <%= @customer.email %>
+        </div>
 
-<div class="form-group">
-<label for="customer_list">販売ステータス</label>
-  <% if @customer.is_active == true %>
-    <%= '有効' %>
-  <% else %>
-    <%= '退会' %>
-  <% end %>
-</div>
+        <div class="form-group mb-5">
+        <label for="customer_list">販売ステータス</label><br />
+          <% if @customer.is_active == true %>
+            <div class="text-success font-weight-bold">
+              <%= '有効' %>
+            </div>
+          <% else %>
+            <div class="text-muted font-weight-bold">
+              <%= '退会' %>
+            </div>
+          <% end %>
+        </div>
 
-<div class="form-group">
-  <%= link_to '編集する',  edit_admin_customer_path(@customer.id) %>
-  <%= link_to '注文履歴一覧を見る' %>
+        <div class="form-group mb-5">
+          <%= link_to '編集する',  edit_admin_customer_path(@customer.id), class: 'btn btn-success mr-3' %>
+          <%= link_to '注文履歴一覧を見る', admin_root_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+  </div>
 </div>
 

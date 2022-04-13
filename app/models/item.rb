@@ -5,8 +5,10 @@ class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
 
   # バリデーション設定
+  validates :image, presence: true
   validates :name, presence: true
   validates :introduction, presence: true
+  validates :genre_id, presence: true
   validates :price, presence: true
 
   # ActiveStoreage：画像使用宣言
@@ -26,4 +28,8 @@ class Item < ApplicationRecord
     (price * 1.1).floor
   end
 
+  # 検索機能追加
+  def self.search(keyword)
+    where(["genre_id like(?)", "%#{keyword}%"])
+  end
 end

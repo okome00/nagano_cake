@@ -8,6 +8,17 @@
         </div>
       </div>
 
+      <div id="error_explanation">
+        <% if @item.errors.any? %>
+          <h2><%= @item.errors.count %> errors prohibited this user from being saved:</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
       <%= form_with model: @item, url: admin_item_path do |f| %>
         <div class="form-group">
           <%= f.label :商品画像 %><br />
@@ -26,7 +37,7 @@
 
         <div class="form-group">
           <%= f.label :ジャンル %>
-          <%= f.collection_select :genre_id, @genres, :id, :name, { prompt: '--選択してください--' }, class: 'form-control' %>
+          <%= f.collection_select :genre_id, @genres, :id, :name, { include_blank: '--選択してください--' }, class: 'form-control' %>
         </div>
 
         <div class="form-group">
@@ -36,9 +47,9 @@
 
         <div class="form-group">
           <%= f.label :販売ステータス %><br />
-          <%= f.radio_button :is_active, true %>
+          <%= f.radio_button :is_active, :true %>
           <%= f.label :is_active, '販売中', value: true %>
-          <%= f.radio_button :is_active, false %>
+          <%= f.radio_button :is_active, :false %>
           <%= f.label :is_active, '販売停止中', value: false %>
         </div>
 
