@@ -27,7 +27,7 @@
           <% @items.each do |item| %>
             <tr>
               <td><%= item.id %></td>
-              <td><%= link_to item.name, admin_item_path(item.id) %></td>
+              <td><%= link_to item.name, admin_item_path(item.id), class: 'link' %></td>
               <td><%= item.price.to_s(:delimited) %></td>
               <td><%= item.genre.name %></td>
               <td></td>
@@ -48,10 +48,8 @@
         </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="mx-auto">
-        <%= paginate @items %>
-      </div>
+    <div class="mx-auto mt-3">
+      <%= paginate @items %>
     </div>
   </div>
 </div>

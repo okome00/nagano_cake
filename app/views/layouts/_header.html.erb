@@ -32,15 +32,16 @@
         <%# 検索機能　※できれば %>
         <% end %>
       </ul>
-
-      <div class="search-form text-right">
-        <%= form_with url: search_path do |f| %>
-          <%= f.text_field :keyword, value: @keyword, placeholder: 'search' %>
-          <button type=submit>
-            <i class="fa fa-search"></i>
-          </button>
-        <% end %>
-      </div>
     </div>
   </div>
 </nav>
+<div class="search-form pb-3">
+  <div class="col-10 text-right">
+    <%= form_with url: search_path do |f| %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: 'search' %>
+      <button type=submit>
+        <i class="fa fa-search"></i>
+      </button>
+    <% end %>
+  </div>
+</div>

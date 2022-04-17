@@ -8,18 +8,20 @@
     </div>
 
     <div class="col-md-9 offset-md-1">
-      <div class="col-md-auto mb-3 liline-block">
-        <h3>商品一覧</h3>
+      <div class="col-md-auto mb-3">
+        <h3 class="font-weight-bold">商品一覧</h3>
         <p>(全<%= @all_items.count %>件)</p>
       </div>
       <div class="row">
         <% @items.each do |item| %>
-          <div class="col-lg-3 col-md-6 mb-4">
-            <%= link_to item_path(item.id) do %>
-              <%= image_tag item.get_image(200, 200) %><br />
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="items">
+            <%= link_to item_path(item.id), class: 'link' do %>
+              <%= image_tag item.get_image(120, 100) %><br />
+              <%= item.name %><br />
+              ￥<%= item.price.to_s(:delimited) %>
             <% end %>
-            <%= item.name %><br />
-            ￥<%= item.price.to_s(:delimited) %>
+            </div>
           </div>
         <% end %>
       </div>

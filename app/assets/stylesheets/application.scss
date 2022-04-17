@@ -24,5 +24,28 @@
 }
 
 a:hover {
-  color: #0056b3;
+  color: #000;
+}
+
+.jumbotron {
+  height: 300px;
+  width: 100%;
+  background-image: url("cafe-haikei.png");
+  background-size: cover;
+  filter: opacity(70%);
+  p {
+    text-align: center;
+    padding: 30px 0;
+  }
+}
+
+.items {
+  img {
+    width: 160px;
+    height: 120px;
+  }
+}
+
+.link {
+  color: #000;
 }

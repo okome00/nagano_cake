@@ -124,9 +124,9 @@ ActiveRecord::Schema.define(version: 2022_04_08_130759) do
     t.integer "postage"
     t.integer "total_price"
     t.integer "payment", default: 0
+    t.integer "order_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_status"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

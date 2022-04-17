@@ -13,11 +13,6 @@ class Public::OrdersController < ApplicationController
   def confirm
     @customer = current_customer
     @order = Order.new(order_params)
-    @cart_items = current_customer.cart_items
-    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-    @order.postage = 800
-    @sum = (@total + @order.postage)
-
     # address_number1 "ご自身の住所"
     if params[:order][:select_address] == "0"
       @order.postal_code = @customer.postal_code
@@ -35,24 +30,29 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     end
+    @cart_items = current_customer.cart_items
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @order.postage = 800
+    @sum = (@total + @order.postage)
   end
 
   # 注文処理アクション
   def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @customer = current_customer
     @cart_items = current_customer.cart_items
-    @order = current_customer.orders.new(order_params)
-    if @order.save
+    if @order.save!
+      # 商品詳細(OrderDetail)モデルにカート内商品の情報をもとに保存
       @cart_items.each do |cart_item|
-        # 取り出したカート内アイテム分処理を繰り返す
-        order_detail = OrderDetail.new
-        order_detail.item_id = cart_item.item_id
-        order_detail.order_id = @order.id
-        order_detail.amount = cart_item.amount
-        order_detail.price = cart_item.item.with_tax_price
-        order_detail.save
+        @order_detail = OrderDetail.new
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id = @order.id
+        @order_detail.amount = cart_item.amount
+        @order_detail.price = cart_item.item.with_tax_price
+        @order_detail.save
       end
-      # 注文完了後カートを空にする
+      # カート内商品をすべて削除
       @cart_items.destroy_all
       redirect_to orders_thanks_path
     else
@@ -79,7 +79,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :postage, :total_price, :payment_method)
+    params.require(:order).permit(:postal_code, :address, :name, :postage, :total_price, :payment)
   end
 
 end
